@@ -2,7 +2,7 @@
 
 # Victor Kipruto Rop — Data Engineering Portfolio
 
-**End-to-end Data Engineering portfolio covering ETL, real-time streaming, fraud detection, and financial analytics across M-Pesa, KCB, Equity Group, Absa, and KRA — with live Streamlit dashboards and production-grade infrastructure.**
+**A portfolio of data engineering experiments and reusable analytics assets spanning banking, telecom, and public-sector domains. The repository includes ETL scripts, dbt models, dashboards, and infrastructure examples rather than one single production deployment.**
 
 [![CI/CD](https://github.com/Victor-Kipruto-Rop/victor-kipruto-rop-portfolio/actions/workflows/ci.yml/badge.svg)](https://github.com/Victor-Kipruto-Rop/victor-kipruto-rop-portfolio/actions)
 [![Python](https://img.shields.io/badge/Python-3.11-3776AB?style=flat-square&logo=python&logoColor=white)](https://python.org)
@@ -105,21 +105,19 @@ Full architecture detail in [ARCHITECTURE.md](./ARCHITECTURE.md).
 
 | Project | Domain | Key Metric | Stack | Dashboard | Status |
 |---|---|---|---|---|---|
-| [mpesa_safaricom](./mpesa_safaricom) | Flagship Streaming & Analytics | ~1.2M transactions processed | Kafka, Spark, Airflow, dbt | [View](https://kipruto45-victor-kipruto-rop-portfolio-g8pspygfpttsbfggjaadwy.streamlit.app/) | 🟢 Live |
-| [absa_bank_kenya](./absa_bank_kenya) | Banking ETL & Open Banking | 5-year financial KPI history | Python, dbt, PostgreSQL | [View](https://kipruto45-victor-kipruto-rop-portfolio-cc6ye8wlqrt2vtpsdndigd.streamlit.app/) | 🟢 Live |
-| [equity_group_etl](./equity_group_etl) | Pan-African Consolidation | 7-country subsidiary rollup | Airflow, PostgreSQL, dbt | [View](https://kipruto45-victor-kipruto-rop-portfolio-g8pspygfpttsbfggjaadwy.streamlit.app/) | 🟢 Live |
-| [kcb_group_etl](./kcb_group_etl) | Financials & Loan Analytics | KCB Group + 6 subsidiaries | Python, SQL, dbt | [View](https://kipruto45-victor-kipruto-rop-portfolio-g8pspygfpttsbfggjaadwy.streamlit.app/) | 🔵 Stable |
-| [kra_data_engineering](./kra_data_engineering) | Fiscal & Trade Intelligence | 12-month revenue time series | Python, SQL, dbt | [View](https://kipruto45-victor-kipruto-rop-portfolio-g8pspygfpttsbfggjaadwy.streamlit.app/) | 🔵 Stable |
-| [safaricom_pipeline](./safaricom_pipeline) | Telecom Service Analytics | Subscriber & ARPU metrics | Python, Spark, SQL | — | 🔵 Stable |
-| [kenya_banking_sector](./kenya_banking_sector) | Macro-Financial Stability | Sector-wide CBK aggregates | Python, BI, Analytics | — | 🔵 Stable |
-| [mpesa_loan_book_analytics](./mpesa_loan_book_analytics) | Credit & Vintage Analytics | Loan cohort vintage curves | Python, SQL, dbt | — | 🔵 Stable |
-| [fraud_anomaly_detection](./mpesa_safaricom/fraud_anomaly_detection) | ML Fraud Monitoring | ~94% fraud recall (Isolation Forest) | Python, Scikit-learn, PostgreSQL | — | 🔵 Stable |
-| [float_liquidity_forecasting](./mpesa_safaricom/float_liquidity_forecasting) | Time-Series Forecasting | 7-day float demand forecast | Python, Prophet, dbt | — | 🔵 Stable |
-| [agent_network_analytics](./mpesa_safaricom/agent_network_analytics) | Agent Liquidity & Performance | 105K+ agent network coverage | Python, SQL, dbt | — | 🔵 Stable |
-| [remittance_analytics](./mpesa_safaricom/remittance_analytics) | Cross-Border Inflow Tracking | East Africa diaspora corridors | Python, SQL, dbt | — | 🔵 Stable |
-| [merchant_intelligence_platform](./mpesa_safaricom/merchant_intelligence_platform) | Merchant RFM Segmentation | RFM scoring across merchant tiers | Python, SQL, dbt | — | 🔵 Stable |
-| [financial_performance_tracker](./financial_performance_tracker) | Multi-Bank KPI Tracking | 3-bank consolidated view | Python, PostgreSQL, Streamlit | — | 🔵 Stable |
-| [mpesa_enterprise_projects](./mpesa_enterprise_projects) | Pan-African Lakehouse | Medallion Architecture (Bronze→Gold) | dbt, PostgreSQL, Terraform | — | 🟡 In Progress |
+| [mpesa_safaricom](./mpesa_safaricom) | Streaming and analytics examples | Batch and streaming-oriented assets | Python, dbt, Airflow | — | 🛠️ Active |
+| [absa_bank_kenya](./absa_bank_kenya) | Banking ETL and reporting assets | Example pipelines and dashboards | Python, dbt, PostgreSQL | — | 🧪 Example-oriented |
+| [equity_group_etl](./equity_group_etl) | Regional consolidation examples | Multi-country rollup assets | Airflow, PostgreSQL, dbt | — | 🧪 Example-oriented |
+| [kcb_group_etl](./kcb_group_etl) | Financials and loan analytics | Core KCB analytics package | Python, SQL, dbt | — | 🛠️ Active |
+| [kra_data_engineering](./kra_data_engineering) | Fiscal and trade intelligence | Tax and customs examples | Python, SQL, dbt | — | 🧪 Example-oriented |
+| [safaricom_pipeline](./safaricom_pipeline) | Telecom analytics examples | Subscriber and service metrics assets | Python, Spark, SQL | — | 🧪 Example-oriented |
+| [kenya_banking_sector](./kenya_banking_sector) | Macro-financial analytics workspace | Sector-wide templates and notebooks | Python, BI, Analytics | — | 🧪 Partially scaffolded |
+| [fraud_anomaly_detection](./mpesa_safaricom/fraud_anomaly_detection) | Fraud detection examples | Rule-based and ML-oriented assets | Python, Scikit-learn, PostgreSQL | — | 🧪 Example-oriented |
+| [float_liquidity_forecasting](./mpesa_safaricom/float_liquidity_forecasting) | Forecasting experiments | Time-series forecasting examples | Python, Prophet, dbt | — | 🧪 Example-oriented |
+| [agent_network_analytics](./mpesa_safaricom/agent_network_analytics) | Agent liquidity analytics | Network and coverage examples | Python, SQL, dbt | — | 🧪 Example-oriented |
+| [remittance_analytics](./mpesa_safaricom/remittance_analytics) | Cross-border analytics | Corridor and remittance examples | Python, SQL, dbt | — | 🧪 Example-oriented |
+| [merchant_intelligence_platform](./mpesa_safaricom/merchant_intelligence_platform) | Merchant segmentation examples | RFM and segmentation assets | Python, SQL, dbt | — | 🧪 Example-oriented |
+| [mpesa_enterprise_projects/pan-african-lakehouse](./mpesa_enterprise_projects/pan-african-lakehouse) | Minimal medallion lakehouse example | Bronze/silver/gold starter project | dbt, PostgreSQL, Terraform | — | 🟡 Minimal example |
 
 ---
 
@@ -127,14 +125,14 @@ Full architecture detail in [ARCHITECTURE.md](./ARCHITECTURE.md).
 
 | Standard | Implementation | Coverage |
 |---|---|---|
-| **CI/CD** | GitHub Actions — SQL linting (SQLFluff), dbt compile, K8s manifest linting | All pushes to `main` |
-| **Data Quality** | dbt schema tests — null checks, uniqueness, accepted values, range constraints | All mart models |
-| **Unit Testing** | Pytest — ingestion logic, transformation functions, schema validation | ~80% ~estimated |
-| **Code Style** | Black (Python), isort, SQLFluff (SQL), pre-commit hooks | Enforced on commit |
-| **Fraud Detection** | Isolation Forest anomaly scoring on M-Pesa transaction streams | ~94% recall ~estimated |
-| **Secrets Management** | `.env` files excluded via `.gitignore`, no hardcoded credentials in codebase | All projects |
-| **Containerisation** | Docker Compose per project for local production parity | All projects |
-| **Orchestration** | Apache Airflow DAGs with SLA monitoring, retries, and backfill support | All batch pipelines |
+| **CI/CD** | GitHub Actions workflows for linting and dbt parsing checks | Selected projects |
+| **Data Quality** | dbt schema tests and SQL conventions are present in several projects | Partial |
+| **Unit Testing** | Pytest coverage for ingestion and transformation helpers exists in places | Partial |
+| **Code Style** | SQLFluff and Python formatting conventions are documented for the main projects | Partial |
+| **Fraud Detection** | Rule-based and model-oriented fraud examples are included | Example level |
+| **Secrets Management** | `.env` examples are included and local credentials remain outside source control | In practice |
+| **Containerisation** | Docker Compose files are present for a subset of projects | Partial |
+| **Orchestration** | Airflow-style DAGs appear in several subprojects | Partial |
 
 ---
 

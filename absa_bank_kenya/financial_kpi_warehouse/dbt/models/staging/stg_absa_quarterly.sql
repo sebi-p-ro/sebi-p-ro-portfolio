@@ -1,6 +1,8 @@
 with source as (
-    select * from {{ source('absa_raw', 'raw_absa_financials') }}
+    select *
+    from {{ source('absa_raw', 'raw_absa_financials') }}
 ),
+
 renamed as (
     select
         indicator,
@@ -9,4 +11,6 @@ renamed as (
         reported_date
     from source
 )
-select * from renamed
+
+select *
+from renamed

@@ -1,12 +1,23 @@
 with staging as (
-    select * from {{ ref('stg_absa_quarterly') }}
+    select *
+    from {{ ref('stg_absa_quarterly') }}
 ),
 
 asset_metrics as (
     select
         year,
-        max(case when indicator = 'Non-Performing Loans' then value_m_kes end) as npl_amount,
-        max(case when indicator = 'Gross Loans' then value_m_kes end) as gross_loans
+        max(
+            case
+                when indicator = 'Non-Performing Loans'
+                    then value_m_kes
+            end
+        ) as npl_amount,
+        max(
+            case
+                when indicator = 'Gross Loans'
+                    then value_m_kes
+            end
+        ) as gross_loans
     from staging
     group by 1
 ),
@@ -20,4 +31,5 @@ calculated as (
     from asset_metrics
 )
 
-select * from calculated
+select *
+from calculated

@@ -1,6 +1,8 @@
 with source as (
-    select * from {{ source('kcb_raw', 'raw_kcb_financials') }}
+    select *
+    from {{ source('kcb_raw', 'raw_kcb_financials') }}
 ),
+
 renamed as (
     select
         subsidiary,
@@ -16,4 +18,6 @@ renamed as (
         customer_count
     from source
 )
-select * from renamed
+
+select *
+from renamed

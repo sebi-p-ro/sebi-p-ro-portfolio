@@ -1,6 +1,8 @@
 with staging as (
-    select * from {{ ref('stg_kcb_financials') }}
+    select *
+    from {{ ref('stg_kcb_financials') }}
 ),
+
 asset_quality as (
     select
         subsidiary,
@@ -10,4 +12,6 @@ asset_quality as (
         (npl_ratio_percent / 100) * total_assets_m_kes as npl_amount_m_kes
     from staging
 )
-select * from asset_quality
+
+select *
+from asset_quality

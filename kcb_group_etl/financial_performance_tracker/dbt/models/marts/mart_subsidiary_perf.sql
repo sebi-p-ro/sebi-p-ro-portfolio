@@ -1,6 +1,8 @@
 with staging as (
-    select * from {{ ref('stg_kcb_financials') }}
+    select *
+    from {{ ref('stg_kcb_financials') }}
 ),
+
 performance as (
     select
         subsidiary,
@@ -8,8 +10,12 @@ performance as (
         net_profit_m_kes,
         total_assets_m_kes,
         operating_expenses_m_kes,
-        (operating_expenses_m_kes / nullif(net_interest_income_m_kes, 0)) * 100 as cost_to_income_ratio,
-        customer_count
+        customer_count,
+        (
+            operating_expenses_m_kes / nullif(net_interest_income_m_kes, 0)
+        ) * 100 as cost_to_income_ratio
     from staging
 )
-select * from performance
+
+select *
+from performance

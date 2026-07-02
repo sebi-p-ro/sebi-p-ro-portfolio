@@ -57,7 +57,7 @@ spec:
       containers:
       - name: dashboard
         image: python:3.11-slim
-        command: ["streamlit", "run", "Absa_Bank_Kenya(PIPELINE)/dashboard_app.py"]
+        command: ["sh", "-c", "pip install streamlit && streamlit run absa_bank_kenya/dashboard_app.py --server.port 8501 --server.address 0.0.0.0"]
         ports:
         - containerPort: 8501
         env:
