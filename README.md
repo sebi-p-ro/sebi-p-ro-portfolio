@@ -29,15 +29,22 @@
 
 ---
 
-## 📊 Live Dashboards
+## 📊 Dashboards & Visualizations
 
-| Dashboard | Link | Description |
-|---|---|---|
-| **Executive Financial Summary** | [🚀 View](https://kipruto45-victor-kipruto-rop-portfolio-g8pspygfpttsbfggjaadwy.streamlit.app/) | Unified 2025 audited KPIs across KCB, Absa Kenya, and Equity Group |
-| **Absa Bank Kenya** | [🔴 View](https://kipruto45-victor-kipruto-rop-portfolio-cc6ye8wlqrt2vtpsdndigd.streamlit.app/) | Financial KPIs, Risk/Capital ratios, and Open Banking API adoption metrics |
-| **Equity Group Pan-Africa** | [🌍 View](https://kipruto45-victor-kipruto-rop-portfolio-g8pspygfpttsbfggjaadwy.streamlit.app/) | Regional profitability, mobile adoption, and Kenya transaction matrix |
-| **KCB Group Integrated** | [🦁 View](https://kipruto45-victor-kipruto-rop-portfolio-g8pspygfpttsbfggjaadwy.streamlit.app/) | Consolidated performance tracking and M-Pesa loan book analytics |
-| **KRA Revenue & Trade** | [🇰🇪 View](https://kipruto45-victor-kipruto-rop-portfolio-g8pspygfpttsbfggjaadwy.streamlit.app/) | Tax revenue monitoring, customs trade flows, and economic indicators |
+> **Note**: Dashboard infrastructure (Streamlit templates) is included in this portfolio. Deployments may vary in availability. See each project's `dashboards/` folder for implementation details.
+
+| Project | Dashboard | Status | Description |
+|---|---|---|---|
+| KCB Group ETL | `dashboards/executive_hub.py` | 🏠 Template | Financial performance and loan analytics |
+| Absa Bank Kenya | `dashboards/kpi_warehouse.py` | 🏠 Template | Banking KPIs, risk metrics, Open Banking metrics |
+| Equity Group ETL | `dashboards/regional_hub.py` | 🏠 Template | Regional profitability, mobile adoption metrics |
+| KRA Data Eng | `dashboards/revenue_tracker.py` | 🏠 Template | Tax revenue and customs trade flows |
+| M-Pesa Streaming | `dashboards/realtime_fraud.py` | 🏠 Template | Real-time transaction monitoring |
+
+**How to Run Locally:**
+```bash
+streamlit run ./path/to/dashboards/*.py
+```
 
 ---
 
@@ -103,21 +110,19 @@ Full architecture detail in [ARCHITECTURE.md](./ARCHITECTURE.md).
 
 ## 📂 Projects
 
-| Project | Domain | Key Metric | Stack | Dashboard | Status |
-|---|---|---|---|---|---|
-| [mpesa_safaricom](./mpesa_safaricom) | Streaming and analytics examples | Batch and streaming-oriented assets | Python, dbt, Airflow | — | 🛠️ Active |
-| [absa_bank_kenya](./absa_bank_kenya) | Banking ETL and reporting assets | Example pipelines and dashboards | Python, dbt, PostgreSQL | — | 🧪 Example-oriented |
-| [equity_group_etl](./equity_group_etl) | Regional consolidation examples | Multi-country rollup assets | Airflow, PostgreSQL, dbt | — | 🧪 Example-oriented |
-| [kcb_group_etl](./kcb_group_etl) | Financials and loan analytics | Core KCB analytics package | Python, SQL, dbt | — | 🛠️ Active |
-| [kra_data_engineering](./kra_data_engineering) | Fiscal and trade intelligence | Tax and customs examples | Python, SQL, dbt | — | 🧪 Example-oriented |
-| [safaricom_pipeline](./safaricom_pipeline) | Telecom analytics examples | Subscriber and service metrics assets | Python, Spark, SQL | — | 🧪 Example-oriented |
-| [kenya_banking_sector](./kenya_banking_sector) | Macro-financial analytics workspace | Sector-wide templates and notebooks | Python, BI, Analytics | — | 🧪 Partially scaffolded |
-| [fraud_anomaly_detection](./mpesa_safaricom/fraud_anomaly_detection) | Fraud detection examples | Rule-based and ML-oriented assets | Python, Scikit-learn, PostgreSQL | — | 🧪 Example-oriented |
-| [float_liquidity_forecasting](./mpesa_safaricom/float_liquidity_forecasting) | Forecasting experiments | Time-series forecasting examples | Python, Prophet, dbt | — | 🧪 Example-oriented |
-| [agent_network_analytics](./mpesa_safaricom/agent_network_analytics) | Agent liquidity analytics | Network and coverage examples | Python, SQL, dbt | — | 🧪 Example-oriented |
-| [remittance_analytics](./mpesa_safaricom/remittance_analytics) | Cross-border analytics | Corridor and remittance examples | Python, SQL, dbt | — | 🧪 Example-oriented |
-| [merchant_intelligence_platform](./mpesa_safaricom/merchant_intelligence_platform) | Merchant segmentation examples | RFM and segmentation assets | Python, SQL, dbt | — | 🧪 Example-oriented |
-| [mpesa_enterprise_projects/pan-african-lakehouse](./mpesa_enterprise_projects/pan-african-lakehouse) | Minimal medallion lakehouse example | Bronze/silver/gold starter project | dbt, PostgreSQL, Terraform | — | 🟡 Minimal example |
+> **Portfolio Note**: This is a collection of **working examples** demonstrating real-world data engineering patterns. Projects are at various maturity levels—see [PORTFOLIO_STATUS.md](./PORTFOLIO_STATUS.md) for honest capability assessment.
+
+| Project | Domain | Tech Stack | Status |
+|---|---|---|---|
+| [mpesa_safaricom](./mpesa_safaricom) | Mobile money analytics and streaming | Python, Kafka, dbt, Streamlit | 🔧 Active |
+| [kcb_group_etl](./kcb_group_etl) | Banking ETL and financial analytics | dbt, PostgreSQL, Airflow | 🔧 Active |
+| [absa_bank_kenya](./absa_bank_kenya) | Banking KPI warehouse | dbt, PostgreSQL | 🟢 Tested |
+| [fraud_detection_unified](./fraud_detection_unified) | Consolidated fraud detection engine | Python, Scikit-learn, Pytest | ✅ Production-ready (example) |
+| [equity_group_etl](./equity_group_etl) | Regional consolidation patterns | Airflow, dbt, PostgreSQL | 🟡 Example |
+| [kra_data_engineering](./kra_data_engineering) | Tax and customs analytics | Python, dbt, PostgreSQL | 🟡 Example |
+| [safaricom_pipeline](./safaricom_pipeline) | Telecom analytics examples | Spark, Python, SQL | 🏠 Educational |
+| [mpesa_enterprise_projects](./mpesa_enterprise_projects) | Medallion lakehouse starter | dbt, PostgreSQL | 🏠 Template |
+| [kenya_banking_sector](./kenya_banking_sector) | Macro-financial analytics workspace | Python, notebooks, SQL | 🏠 Learning |
 
 ---
 
@@ -125,27 +130,37 @@ Full architecture detail in [ARCHITECTURE.md](./ARCHITECTURE.md).
 
 | Standard | Implementation | Coverage |
 |---|---|---|
-| **CI/CD** | GitHub Actions workflows for linting and dbt parsing checks | Selected projects |
-| **Data Quality** | dbt schema tests and SQL conventions are present in several projects | Partial |
-| **Unit Testing** | Pytest coverage for ingestion and transformation helpers exists in places | Partial |
-| **Code Style** | SQLFluff and Python formatting conventions are documented for the main projects | Partial |
-| **Fraud Detection** | Rule-based and model-oriented fraud examples are included | Example level |
-| **Secrets Management** | `.env` examples are included and local credentials remain outside source control | In practice |
-| **Containerisation** | Docker Compose files are present for a subset of projects | Partial |
-| **Orchestration** | Airflow-style DAGs appear in several subprojects | Partial |
+| **Testing** | 35+ Pytest tests (unit + integration) + dbt schema tests | Critical modules (fraud detection, streaming) |
+| **CI/CD** | GitHub Actions: dbt parse, SQLFluff lint, k8s validation | All dbt projects |
+| **Code Quality** | SQLFluff linting (≤80 chars, CTE spacing) | SQL-based projects |
+| **Documentation** | Architecture diagrams, README files, inline SQL comments | All major projects |
+| **Fraud Detection** | Consolidated rules-based and ML-ready engine | 21 unit tests + 14 integration tests |
+| **Secrets Management** | `.env` files for local development; `profiles.yml` excluded from git | In practice |
+| **Version Control** | Clean commit history with descriptive messages; deprecation registry | Phases 1-5 complete |
+| **Data Quality** | dbt schema tests (unique, not_null, range validation) | Selected models |
+
+**See [PORTFOLIO_STATUS.md](./PORTFOLIO_STATUS.md) for detailed capability matrix and known limitations.**
 
 ---
 
 ## 🏗️ Infrastructure & IaC
 
-Terraform (HCL) provisions the core infrastructure across all projects:
+**Current Implementation:**
+- **PostgreSQL 15** — local/cloud-deployable data warehouse
+- **Kafka 7.5.0** — event streaming (single broker; no HA)
+- **Streamlit** — dashboard frontend with plotly visualizations
+- **GitHub Actions** — CI/CD validation (not deployment)
+- **Terraform / HCL** — infrastructure templates for PostgreSQL + networking
+- **Docker Compose** — local development stacks for multi-service testing
+- **Kubernetes manifests** — pod definitions (example-only; not autoscaled)
 
-- **PostgreSQL 15** — managed database for raw ingestion and dbt transformation output
-- **Streamlit deployments** — dashboard hosting with environment variable injection
-- **Kubernetes manifests** (`k8s/`) — deployment and scaling configs for PostgreSQL and Streamlit pods
-- **GitHub Actions runners** — CI/CD pipeline automation for linting, testing, and deployment
-
-See `k8s/` for Kubernetes manifests and Terraform configs within each project directory.
+**Not Included (Yet):**
+- ❌ Managed cloud services (AWS/GCP setup)
+- ❌ Monitoring stack (Prometheus, Grafana, alerting)
+- ❌ Centralized logging (ELK, Datadog)
+- ❌ Secrets management service (AWS Secrets Manager)
+- ❌ Multi-region deployment
+- ❌ CI/CD deployment automation (GitHub Actions validates only)
 
 ---
 
@@ -214,19 +229,52 @@ See `k8s/` for Kubernetes manifests and Terraform configs within each project di
 
 ## 🗺️ Roadmap
 
-| Timeline | Item | Status |
+> **Roadmap Honesty Note**: These are aspirational improvements, not commitments. Focus is on maintaining quality examples rather than chasing every new technology.
+
+| Timeline | Item | Feasibility |
 |---|---|---|
-| Q3 2026 | Apache Flink migration for sub-100ms streaming latency | 🟡 Planned |
-| Q3 2026 | OpenLineage integration for end-to-end data lineage tracking | 🟡 Planned |
-| Q3 2026 | Per-project individual Streamlit URLs — fix shared dashboard links | 🟡 Planned |
-| Q4 2026 | Great Expectations integration across all ingestion layers | 🟡 Planned |
-| Q4 2026 | Real-time fraud scoring via Kafka Streams (replace batch Isolation Forest) | 🟡 Planned |
-| Q1 2027 | Apache Iceberg migration for time-travel queries on the lakehouse | 🟡 Planned |
-| Q1 2027 | dbt Semantic Layer + MetricFlow for unified business metrics | 🟡 Planned |
+| **Now** | Fraud detection engine with 35+ tests | ✅ Complete |
+| **Now** | Real-time streaming architecture (Kafka) | ✅ Complete |
+| **Q1 2026** | dbt data quality tests for all models | 🟡 In progress |
+| **Q1 2026** | Comprehensive documentation (PORTFOLIO_STATUS.md) | ✅ Complete |
+| **Q2 2026** | Great Expectations integration | 🟡 Planned |
+| **Q2 2026** | OpenLineage data lineage tracking | 🟡 Planned |
+| **Q3 2026** | Streaming fraud scoring via Kafka Streams | 🟠 Experimental |
+| **Q3 2026** | Apache Flink sub-100ms processing | 🟠 Research phase |
+| **Q4 2026** | Monitoring stack (Prometheus + Grafana) | 🟠 Planned |
+| **Q1 2027** | dbt Semantic Layer integration | 🟠 Depends on ecosystem maturity |
+
+**Realistic Constraints:**
+- Portfolio improvements prioritized over feature bloat
+- Quality over quantity (testing matters more than complexity)
+- Documentation updated alongside code changes
+- Aspirational items marked clearly (this roadmap)
 
 ---
 
-## 📬 Contact
+## � Additional Resources
+
+- **[PORTFOLIO_STATUS.md](./PORTFOLIO_STATUS.md)** — Honest capability matrix, limitations, known gaps, and realistic assessment
+- **[DEPRECATED.md](./DEPRECATED.md)** — Deprecated modules and migration paths
+- **[ARCHITECTURE.md](./ARCHITECTURE.md)** — Detailed architecture and data flows
+- **[PHASE_1_through_PHASE_5](./PHASE_*.md)** — Implementation details for each remediation phase
+
+---
+
+## 🎯 What This Portfolio Actually Is
+
+✅ **Working Examples**: Functional implementations demonstrating real-world patterns  
+✅ **Learning Resource**: Best practices in dbt, testing, CI/CD, fraud detection  
+✅ **Reference Architecture**: How to organize multi-project analytics systems  
+✅ **Honest Assessment**: Clear documentation of what works and what doesn't
+
+❌ **Not Production-Ready As-Is**: Requires additional hardening, monitoring, and scaling  
+❌ **Not a Managed Service**: No vendor support or SLAs  
+❌ **Not a Shortcut**: Still requires understanding of each component  
+
+---
+
+## �📬 Contact
 
 **Victor Kipruto Rop** — Data Engineer, Nairobi, Kenya 🇰🇪
 

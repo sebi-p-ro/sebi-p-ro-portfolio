@@ -145,10 +145,39 @@ engine = ConsolidatedFraudDetectionEngine(
 
 ## Known Limitations
 
-- **ML Model**: Assumes pre-trained joblib model exists. Falls back to rules-only if missing.
-- **Feature Engineering**: M-Pesa rules use timestamp-based features; banking rules are account-centric.
-- **Audit Trail**: In-memory alerts log. For production, integrate with centralized logging (ELK, DataDog, etc.).
-- **Real-time Requirements**: Current implementation is transaction-batch suitable; for true streaming, integrate with Kafka/Kinesis.
+| Limitation | Impact | Production Workaround |
+|-----------|--------|---------------------|
+| **ML Model Missing** | Falls back to rules only | Train and deploy ML model; add model versioning |
+| **Audit Trail In-Memory** | No persistent fraud history | Integrate with PostgreSQL or data warehouse |
+| **Rules Hardcoded** | Cannot tune without code changes | Externalize rules to database/config service |
+| **Single-Threaded** | Slow batch processing | Implement distributed batch processing |
+| **No Real-Time Streaming** | Batch-based only (100s/sec) | Integrate with Kafka Streams or Apache Flink |
+| **No Feedback Loop** | Cannot improve rules over time | Add manual review + model retraining pipeline |
+| **Limited Features** | Only timestamp-based or account-level | Extend with network analysis, graph features |
+| **No Explainability** | Hard to explain alerts to users | Add feature importance and rule explanation |
+| **No PII Redaction** | Sensitive data in logs | Implement PII masking before storage |
+| **No A/B Testing** | Cannot compare rule versions | Add experiment framework for rule changes |
+
+---
+
+## What This Engine Provides
+
+✅ **Rules-Based Fraud Detection** with hardcoded thresholds  
+✅ **Standardized Alert Format** across mobile money and banking  
+✅ **Consolidated Logic** replacing duplicate implementations  
+✅ **35+ Unit Tests** ensuring correctness  
+✅ **Integration Tests** with streaming service  
+✅ **Clear Migration Path** from legacy systems  
+✅ **Extensible API** for adding new rule types  
+
+❌ **ML Model Included** (graceful degradation only)  
+❌ **Real-Time Performance** (batch suitable)  
+❌ **Production Monitoring** (alerts only)  
+❌ **Rule Explainability** (technical only)  
+❌ **Distributed Processing** (single-threaded)  
+❌ **Feedback Learning** (static rules)  
+
+---
 
 ## Next Steps
 
