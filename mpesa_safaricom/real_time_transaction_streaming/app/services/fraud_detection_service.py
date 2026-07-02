@@ -9,7 +9,7 @@ publishes alerts to the warehouse for dashboard consumption.
 import json
 import logging
 import threading
-from datetime import datetime
+from datetime import datetime, timezone
 from typing import Any, Dict, Optional
 from queue import Queue
 
@@ -96,9 +96,9 @@ class StreamingFraudDetectionService:
                     "severity": alert.severity,
                     "rules_triggered": "|".join(alert.rules_triggered),  # For CSV export
                     "timestamp": alert.timestamp,
-                    "alert_message": alert.alert_message,
-                    "ingestion_timestamp": datetime.utcnow().isoformat(),
-                }
+                "alert_message": alert.alert_message,
+                "ingestion_timestamp": datetime.now(timezone.utc).isoformat(),
+            }
                 return alert_dict
             return None
 
@@ -203,6 +203,9 @@ class KafkaStreamingConsumer:
     consumer.run()
     ```
     """
+
+    KafkaConsumer = None
+    KafkaProducer = None
 
     def __init__(
         self,

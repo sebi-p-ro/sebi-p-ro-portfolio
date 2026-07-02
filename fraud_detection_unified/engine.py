@@ -98,7 +98,12 @@ class ConsolidatedFraudDetectionEngine:
             rules_triggered.append("HIGH_VALUE_POST_SIM_SWAP")
             risk_score += 0.20
 
-        # Rule 3: Night transactions
+        # Rule 3: High-value + extreme velocity
+        if txn.get("amount", 0) >= 100000 and txn.get("velocity_60s", 0) >= 20:
+            rules_triggered.append("HIGH_VALUE_HIGH_VELOCITY")
+            risk_score += 0.25
+
+        # Rule 4: Night transactions
         try:
             timestamp = datetime.fromisoformat(txn.get("timestamp", ""))
             if timestamp.hour < 5 or timestamp.hour > 22:
@@ -164,11 +169,12 @@ class ConsolidatedFraudDetectionEngine:
             rules_triggered.append("NEAR_STRUCTURING_LIMIT")
             risk_score += 0.15
 
-        # Rule 3: Velocity for same account
-        if txn.get("recent_txn_count_48h", 0) >= self.rules_config["structuring_min_count"]:
-            if txn.get("txn_type") == "Cash Deposit":
-                rules_triggered.append("RAPID_CASH_DEPOSITS")
-                risk_score += 0.25
+        # Rule 3: Velocity for same account when deposits are near structuring limits
+        if (txn.get("txn_type") == "Cash Deposit" and
+            txn.get("recent_txn_count_48h", 0) >= self.rules_config["structuring_min_count"] and
+            txn.get("amount", 0) >= self.rules_config["structuring_threshold"]):
+            rules_triggered.append("RAPID_CASH_DEPOSITS")
+            risk_score += 0.25
 
         severity = self._calculate_severity(risk_score, rules_triggered)
 
@@ -206,12 +212,11 @@ class ConsolidatedFraudDetectionEngine:
         """Map risk score to severity level."""
         if risk_score >= 0.9:
             return "CRITICAL"
-        elif risk_score >= 0.7:
-            return "HIGH"
         elif risk_score >= 0.5:
+            return "HIGH"
+        elif risk_score >= 0.25:
             return "MEDIUM"
-        else:
-            return "LOW"
+        return "LOW"
 
     def _format_alert_message(
         self, txn: Dict, risk_score: float, rules: List[str]

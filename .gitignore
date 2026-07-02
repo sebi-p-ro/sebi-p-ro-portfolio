@@ -4,3 +4,9 @@
 __pycache__/
 .ipynb_checkpoints/
 venv_kcb/
+
+# dbt artifacts
+**/dbt/logs/
+**/dbt/target/
+**/dbt/packages/
+**/dbt/dbt_modules/
