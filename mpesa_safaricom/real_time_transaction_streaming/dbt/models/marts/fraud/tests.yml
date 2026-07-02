@@ -1,0 +1,72 @@
+version: 2
+
+models:
+  - name: stg_fraud_alerts
+    columns:
+      - name: alert_id
+        tests:
+          - unique
+          - not_null
+      - name: transaction_id
+        tests:
+          - not_null
+      - name: risk_score
+        tests:
+          - dbt_utils.expression_is_true:
+              expression: "risk_score >= 0 AND risk_score <= 1"
+
+  - name: mart_fraud_metrics_hourly
+    tests:
+      - dbt_utils.recency:
+          datepart: hour
+          interval: 1
+          field: alert_hour
+    columns:
+      - name: alert_hour
+        tests:
+          - not_null
+      - name: severity
+        tests:
+          - not_null
+          - accepted_values:
+              values: ["LOW", "MEDIUM", "HIGH", "CRITICAL"]
+      - name: total_alerts
+        tests:
+          - dbt_utils.expression_is_true:
+              expression: "total_alerts > 0"
+      - name: avg_risk_score
+        tests:
+          - dbt_utils.expression_is_true:
+              expression: "avg_risk_score >= 0 AND avg_risk_score <= 1"
+
+  - name: mart_fraud_metrics_daily
+    columns:
+      - name: alert_date
+        tests:
+          - not_null
+      - name: institution
+        tests:
+          - not_null
+      - name: total_alerts
+        tests:
+          - dbt_utils.expression_is_true:
+              expression: "total_alerts > 0"
+      - name: critical_high_pct
+        tests:
+          - dbt_utils.expression_is_true:
+              expression: "critical_high_pct >= 0 AND critical_high_pct <= 100"
+
+  - name: mart_fraud_high_value_summary
+    columns:
+      - name: alert_id
+        tests:
+          - unique
+          - not_null
+      - name: severity
+        tests:
+          - accepted_values:
+              values: ["HIGH", "CRITICAL"]
+      - name: risk_score
+        tests:
+          - dbt_utils.expression_is_true:
+              expression: "risk_score >= 0 AND risk_score <= 1"
