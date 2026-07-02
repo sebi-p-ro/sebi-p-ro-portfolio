@@ -19,6 +19,14 @@ PyJWT==2.8.0
 passlib[bcrypt]==1.7.4
 python-multipart==0.0.6
 
+# Fraud detection
+pandas>=1.5.0
+scikit-learn>=1.2.0
+joblib>=1.2.0
+
+# Streaming (optional, for Kafka consumer)
+kafka-python==2.0.2
+
 python-dotenv==1.0.0
 email-validator==2.1.0
 
